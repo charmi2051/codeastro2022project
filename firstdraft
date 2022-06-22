@@ -1,0 +1,28 @@
+# A software package to generate rotational spectrum of molecules. (Astrochemistry, yay!)
+# Presumptions : Molecule is a symmterical top and is in Electric and vibrational ground state, 
+# so we only care about the transitions between rotational levels of that molecule. 
+
+# What this code does: 
+    # Inputs required: Temperature, Rotational constants (A,B or C), Jmax, Kmax
+
+    #define the above terms
+
+    #step 1: selection rules : make an array of allowed transitions
+
+    #step 2: Calculates frequencies/wavenumbers : uppper level energy - lower level energy
+
+        # 2.1 write code to calculate energies of different levels and find wavenumber out of it
+
+    #step 3: calculate intensities : Honl-london factor * Boltzmann distribution
+    
+      # 3.1: Find Honl London (6 equations)
+      # 3.2:  Boltzmann distribution (1 equation)
+      # 3.3:  Intensity = Hl * BD
+      
+     #step 6: optional: Export linelist (J, K, wavenumber, int, Hl, Bd, etc)
+
+    #step 4: Plot intensity vs. wavenumber
+    
+    #step 5: smooth the curve
+    
+    
