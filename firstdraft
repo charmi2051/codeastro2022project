@@ -26,3 +26,88 @@
     #step 5: smooth the curve
     
     
+    
+    #Other Approach: 
+    
+    #step 1: 
+    Make 2 objects : 
+    1. Ground levels (which has attributes: ground_B, ground_C, ground_J, ground_K and ground_energy for each level)
+    2. Excited levels (which has attributes: excited_B, excited_C, excited_J, excited_K and excited_energy for each level)
+    
+    
+    What levels? levels are defined by pairs of J and K : for each J, K = 0 to J are allowed
+    
+    So example if J_max is 3 and K_max = 3, levels would be:
+    
+    [J,K]
+    [0,0]
+    [1,1]
+    [1,0]
+    [2,2]
+    [2,1]   
+    [2,0]
+    [3,3]
+    [3,2]
+    [3,1]
+    [3,0]
+    
+    B,C,J,K are input constants and for energy we use enrgy = B*J*(J+1) + (C-B)K**2
+ 
+ #step 2: 
+    Next, 
+    Selection rules: delta_J could be +1, -1 or 0 (which we call P, Q and R branches respectively) and for each delta_J, delta_k can be +1 or -1 for values upto (J). 
+    Here's a short example: If J_max = 4 and k_max = 3, allowed transitions would be
+    
+ delta_J	  Exicted to ground J	excited to ground K
+		
+{delta_J = -1	1 to 0	                  1 to 0
+and
+delat_K = -1}
+	            2 to 1	                  2 to 1
+		                                  1 to 0
+		
+	            3 to 2	                  3 to 2
+		                                  2 to 1
+		                                  1 to 0
+		
+	            4 to 3	                  4 to 3
+	                 	                  3 to 2
+		                                  2 to 1
+		                                  1 to 0
+                                                     
+                                          
+   And same for delta_J = 0 and +1
+
+I hope that helps. For our code to work, once we input J_max and K_max and using above selection rules it should outpout 4 arrays as follows: 
+
+ground_J  = [1,2,2,3,3,3,4,4,4,4.......]
+excited_J = [0,1,1,2,2,2,3,3,3,3.......]
+ground_K =  [1,2,1,3,2,1,4,3,2,1.......]
+excited_K = [0,1,0,2,1,0,3,2,1,0.......]
+    
+    So now if we zip all those arrays ground_J to excited_J and ground_K to excited_K are allowed transitions. 
+    
+    #step 3: 
+    I am not sure if this should be another object, but make something like
+    
+    transitions:
+    (which has attributes wavenumber = excited - ground energies that we calculated in above objects
+                        honl-london factor: 6 equations (uses ground_J and ground_K) 
+                        
+                            #why 6? based on delta_J and delta_K 
+                                            1. -1           -1 (pP_Branch)
+                                            2. -1           +1 (rp_Branch)
+                                            3. 0            -1 (pQ_Branch)
+                                            4. 0            +1 (rQ_Branch)
+                                            5. +1           -1 (pR_Branch)
+                                            6. +1           +1 (rR_Branch)
+                      
+                        boltzmann-distribution factor (uses ground_J and ground_energy)
+                        intensity = hl factor * BD factor
+                        
+                        Finally have a linelist which has following 14 columns: (for each tansition)
+                        
+                        ground_B, ground_C, ground_J, ground_K, ground_energy, excited_B, excited_C, excited_J, excited_K, excited_enery, wavenumber, Honl-london factor, Boltzmann factor, Intenisty
+    
+                        So if we find 132 allowed transitions, linelist will be 132*14
+    
