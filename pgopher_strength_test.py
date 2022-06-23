@@ -6,6 +6,43 @@ import numpy as np
 from astropy import constants as const
 import matplotlib.pyplot as plt
 
+
+
+class RotationalSpectra:
+
+
+    def __init__(self, T, A, B, Jmax = 30, Kmax = 5):
+
+
+        self.T = T 
+        self.A = A 
+        self.B = B
+        self.C = A ## Just note C = A!
+
+        self.Jmax = Jmax 
+        self.Kmax = Kmax 
+
+        self.h = const.h.cgs.value
+        self.c = const.c.to('cm/s').value
+        self.k = const.k_B.cgs.value
+
+        self.origin = 15120
+
+        # cm^{-1}
+        self.ground_B = 0.0111
+        self.excited_B = 0.010767
+
+        self.round_C = 0.005552
+        self.excited_C = 0.00538544
+
+
+
+        #selection_rules =
+
+        pass 
+
+
+
 #Input constants:
     
 T = 2
