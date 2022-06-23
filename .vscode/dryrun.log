@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/andrewlangford/codeastro2022project'
+make: Leaving directory `/Users/andrewlangford/codeastro2022project'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+

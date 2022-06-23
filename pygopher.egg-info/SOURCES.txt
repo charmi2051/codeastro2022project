@@ -1,0 +1,9 @@
+README.md
+setup.py
+pygopher/__init__.py
+pygopher/initialplanning.py
+pygopher/pgopher_strength_test.py
+pygopher.egg-info/PKG-INFO
+pygopher.egg-info/SOURCES.txt
+pygopher.egg-info/dependency_links.txt
+pygopher.egg-info/top_level.txt
